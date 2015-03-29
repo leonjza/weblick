@@ -14,11 +14,9 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
-var/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -55,3 +53,11 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# sqlite-db
+*.db
+*.db-shm
+*.db-wal
+
+# source csvs
+*.csv
