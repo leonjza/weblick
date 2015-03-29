@@ -26,7 +26,6 @@ from lib.Models.Header import Header
 from lib.Models.Cookie import Cookie
 from lib.Models.History import History
 from lib.Models.HistoryHeader import HistoryHeader
-from lib.Models.Lock import Lock
 from lib.Models.Comment import Comment
 from lib.Models.Certificate import Certificate
 
