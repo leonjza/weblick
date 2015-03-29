@@ -45,11 +45,11 @@ If you are going to be using the MySQL/MariaDB backend, prepare a database and c
 insert and update there. Update the `[mysql]` section in the [settings.ini](https://github.com/leonjza/weblick/blob/master/settings.ini) file too.  
 For the default SQLite driver no configuration should be needed. The database file for SQLite will live in the `var` directory.
 
-- With the database configured in the `settings.ini` file, create the schema with:
+ - With the database configured in the `settings.ini` file, create the schema with:
 
-```bash
-$ python lick.py setupdb
-```
+ ```bash
+ $ python lick.py setupdb
+ ```
 
 ##### Source Data
 This tool was written to use the [Aleksa Top 1 Million](https://support.alexa.com/hc/en-us/articles/200461990-Can-I-get-a-list-of-top-sites-from-an-API-) data export.
