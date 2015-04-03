@@ -70,6 +70,15 @@ This tool was written to use the [Aleksa Top 1 Million](https://support.alexa.co
 
 **That should be it**. You should now be able to run it with `$ python lick.py` and watch your database grow!
 
+### Web Interface
+A web component exists that allows one to view some information about urls. To run the web interface, simply run
+
+```bash
+$ python web.py
+```
+
+![webUI](http://i.imgur.com/fuEvtb7.png)
+
 ### Future / TODO
 
 With all of the information gathered, I am thinking of attempting to make it possible to alert if things have changed. Ie;
