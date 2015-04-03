@@ -23,6 +23,7 @@
 from app import app
 from flask import render_template, url_for, g, abort, redirect
 from flask_peewee.utils import object_list, get_object_or_404
+from peewee import fn, SQL
 
 from lib.Models.Url import Url
 from lib.Models.History import History
@@ -90,3 +91,36 @@ def url(id = None):
         data['certificate'] = None
 
     return render_template('url.html', data = data)
+
+@app.route('/stats')
+def stats():
+
+    data = {}
+
+    # select cookie.name, count(cookie.name) as count from cookie group
+    #  by cookie.name order by count desc limit 25;
+    data['cookie_names'] = (Cookie
+        .select(Cookie.name, fn.COUNT(Cookie.name).alias('num_count'))
+        .group_by(Cookie.name)
+        .order_by(SQL('num_count').desc())
+        .limit(10))
+
+    data['cookie_values'] = (Cookie
+        .select(Cookie.value, fn.COUNT(Cookie.value).alias('num_count'))
+        .group_by(Cookie.value)
+        .order_by(SQL('num_count').desc())
+        .limit(10))
+
+    data['header_names'] = (Header
+        .select(Header.name, fn.COUNT(Header.name).alias('num_count'))
+        .group_by(Header.name)
+        .order_by(SQL('num_count').desc())
+        .limit(10))
+
+    data['header_values'] = (Header
+        .select(Header.value, fn.COUNT(Header.value).alias('num_count'))
+        .group_by(Header.value)
+        .order_by(SQL('num_count').desc())
+        .limit(10))
+
+    return render_template('stats.html', data = data)

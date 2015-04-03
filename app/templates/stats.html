@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-condensed">
+        <b>Top 10 Cookie Names</b>
+        <hr>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cookie Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cookie in data['cookie_names'] %}
+                <tr>
+                    <th scope="row">{{ cookie.num_count }}</th>
+                    <td>{{ cookie.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> <!-- ./col-md-6 -->
+
+    <div class="col-md-6">
+        <table class="table table-condensed">
+        <b>Top 10 Cookie Values</b>
+        <hr>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cookie Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cookie in data['cookie_values'] %}
+                <tr>
+                    <th scope="row">{{ cookie.num_count }}</th>
+                    <td>{{ cookie.value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> <!-- ./col-md-6 -->
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-condensed">
+        <b>Top 10 Header Names</b>
+        <hr>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Header Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cookie in data['header_names'] %}
+                <tr>
+                    <th scope="row">{{ cookie.num_count }}</th>
+                    <td>{{ cookie.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> <!-- ./col-md-6 -->
+
+    <div class="col-md-6">
+        <table class="table table-condensed">
+        <b>Top 10 Header Values</b>
+        <hr>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Header Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cookie in data['header_values'] %}
+                <tr>
+                    <th scope="row">{{ cookie.num_count }}</th>
+                    <td>{{ cookie.value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> <!-- ./col-md-6 -->
+</div>
+
+
+{% endblock %}
+
