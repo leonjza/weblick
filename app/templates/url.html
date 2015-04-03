@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    {% if data['url']. is_ok == 0 %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning" role="alert">
+                    Requests to this domain failed.
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well">
+                <h3>{{ data['url'].rank }} - {{ data['url'].domain }} </h3>
+            </div>
+        </div>
+    </div>
+
+    {% if data['url']. is_ok == 1 %}
+        <div class="row">
+            <div class="col-md-12">
+                    <h4>{{ data['url'].final_url|truncate(100, True) }} </h4>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <span class="pull-right">
+                    <a id="prev" href="./{{ data['prev_id'] }}">Prev</a> |
+                    <a id="next" href="./{{ data['next_id'] }}">Next</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            {% if data['history'] is not none %}
+                <h4 id="history"><a href="#history">Request History:</a></h4>
+                <ol>
+                    {% for history in data['history'] %}
+                        <li>{{ history.code }} -> {{ history.history_url }}</li>
+                    {% endfor %}
+                </ol>
+            {% endif %}
+
+            {% if data['certificate'] is not none %}
+                <h4 id="certificate"><a href="#certificate">Certificate:</a></h4>
+                <dl class="dl-horizontal">
+                  <dt>Issuer Components</dt>
+                  <dd>{{ data['certificate'].issuer_components }}</dd>
+                  <dt>Pub Key Type</dt>
+                  <dd>{{ data['certificate'].public_key_type }}</dd>
+                  <dt>Serial</dt>
+                  <dd>{{ data['certificate'].serial_number }}</dd>
+                  <dt>Signature Algorithm</dt>
+                  <dd>{{ data['certificate'].signature_algorithm }}</dd>
+                  <dt>Subject Common Name</dt>
+                  <dd>{{ data['certificate'].subject_common_name }}</dd>
+                  <dt>Subject Components</dt>
+                  <dd>{{ data['certificate'].subject_components }}</dd>
+                  <dt>Version</dt>
+                  <dd>{{ data['certificate'].version }}</dd>
+                  <dt>Expired</dt>
+                  <dd>{{ data['certificate'].expired }}</dd>
+                  <dt>Public Key Bits</dt>
+                  <dd>{{ data['certificate'].public_key_bits }}</dd>
+                </dl>
+            {% endif %}
+
+            {% if data['headers'] is not none %}
+                <h4 id="headers"><a href="#headers">Headers:</a></h4>
+                <dl class="dl-horizontal">
+                    {% for header in data['headers'] %}
+                        <dt>{{ header.name }}</dt>
+                        <dd>{{ header.value }}</dd>
+                    {% endfor %}
+                </dl>
+            {% endif %}
+
+            {% if data['cookies'] is not none %}
+                <h4 id="cookies"><a href="#cookies">Cookies:</a></h4>
+                <dl class="dl-horizontal">
+                    {% for cookie in data['cookies'] %}
+                        <dt>{{ cookie.name }}</dt>
+                        <dd>{{ cookie.value }}</dd>
+                    {% endfor %}
+                </dl>
+            {% endif %}
+
+            {% if data['comments'] is not none %}
+                <h4 id="comments"><a href="#comments">Comments:</a></h4>
+                {% for comment in data['comments'] %}
+                    <pre>{{ comment.comment }}</pre>
+                {% endfor %}
+            {% endif %}
+
+            <h4 id="content"><a href="#content">Content:</a></h4>
+            <pre>{{ data['url'].content }}</pre>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(window).keydown(function (e) {
+            e.preventDefault();
+            if ( e.which === 37 ) {
+                window.location.href = $('#prev')[0].href;
+            } else if ( e.which === 39 ) {
+                window.location.href = $('#next')[0].href;
+            }
+        });
+    </script>
+{% endblock %}
