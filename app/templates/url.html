@@ -18,14 +18,26 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% if data['url']. is_ok == 1 %}
+                <span class="label label-default">{{ data['url'].response_code }}</span>
+                <a href="{{ data['url'].final_url }}" target="_blank">
+                    <i class="fa fa-external-link"></i>
 
-    {% if data['url']. is_ok == 1 %}
-        <div class="row">
-            <div class="col-md-12">
-                    <h4>{{ data['url'].final_url|truncate(100, True) }} </h4>
+                    {{ data['url'].final_url|truncate(90, True) }}
+                </a>
+            {% endif %}
+            <div class="pull-right">
+                <a href="#history" class="btn btn-xs btn-default">History</a>
+                <a href="#certificate" class="btn btn-xs btn-default">Certificate</a>
+                <a href="#headers" class="btn btn-xs btn-default">Headers</a>
+                <a href="#cookies" class="btn btn-xs btn-default">Cookies</a>
+                <a href="#comments" class="btn btn-xs btn-default">Comments</a>
+                <a href="#content" class="btn btn-xs btn-default">Contents</a>
             </div>
         </div>
-    {% endif %}
+    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -41,20 +53,20 @@
     <div class="row">
         <div class="col-md-12">
 
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-
             {% if data['history'] is not none %}
                 <h4 id="history"><a href="#history">Request History:</a></h4>
                 <ol>
                     {% for history in data['history'] %}
-                        <li>{{ history.code }} -> {{ history.history_url }}</li>
+                        <li><span class="label label-default">{{ history.code }}</span> ->
+                            <a href="{{ history.history_url }}" target="_blank">
+                                <i class="fa fa-external-link"></i> {{ history.history_url }}
+                            </a>
+                        </li>
                     {% endfor %}
                 </ol>
             {% endif %}
+
+            <hr>
 
             {% if data['certificate'] is not none %}
                 <h4 id="certificate"><a href="#certificate">Certificate:</a></h4>
@@ -80,6 +92,8 @@
                 </dl>
             {% endif %}
 
+            <hr>
+
             {% if data['headers'] is not none %}
                 <h4 id="headers"><a href="#headers">Headers:</a></h4>
                 <dl class="dl-horizontal">
@@ -89,6 +103,8 @@
                     {% endfor %}
                 </dl>
             {% endif %}
+
+            <hr>
 
             {% if data['cookies'] is not none %}
                 <h4 id="cookies"><a href="#cookies">Cookies:</a></h4>
@@ -100,12 +116,16 @@
                 </dl>
             {% endif %}
 
+            <hr>
+
             {% if data['comments'] is not none %}
                 <h4 id="comments"><a href="#comments">Comments:</a></h4>
                 {% for comment in data['comments'] %}
                     <pre>{{ comment.comment }}</pre>
                 {% endfor %}
             {% endif %}
+
+            <hr>
 
             <h4 id="content"><a href="#content">Content:</a></h4>
             <pre>{{ data['url'].content }}</pre>

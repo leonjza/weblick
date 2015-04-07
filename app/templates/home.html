@@ -1,18 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<div class="jumbotron">
-  <p>
-      {{ counts['url'] }} <small>Url's</small>
-      {{ counts['header'] }} <small>Headers</small>
-      {{ counts['cookie'] }} <small>Cookies</small>
-      {{ counts['comment'] }} <small>Commnets</small>
-      {{ counts['certificate'] }} <small>Certificates</small>
-  </p>
-</div>
-
-<p>
-    <a href="{{ url_for('url') }}">View Url's</a>
-</p>
+<a href="{{ url_for('url') }}" class="btn btn-primary btn-sm">View {{ counts['url'] }} Urls</a>
+<a href="{{ url_for('url') }}" class="btn btn-primary btn-sm">View {{ counts['header'] }} Headers</a>
+<a href="{{ url_for('url') }}" class="btn btn-primary btn-sm">View {{ counts['cookie'] }} Cookies</a>
+<a href="{{ url_for('url') }}" class="btn btn-primary btn-sm">View {{ counts['comment'] }} Comments</a>
+<a href="{{ url_for('url') }}" class="btn btn-primary btn-sm">View {{ counts['certificate'] }} Certificates</a>
 
 {% endblock %}
