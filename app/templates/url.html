@@ -117,10 +117,11 @@
 {% block javascript %}
     <script type="text/javascript">
         $(window).keydown(function (e) {
-            e.preventDefault();
             if ( e.which === 37 ) {
+                e.preventDefault();
                 window.location.href = $('#prev')[0].href;
             } else if ( e.which === 39 ) {
+                e.preventDefault();
                 window.location.href = $('#next')[0].href;
             }
         });
