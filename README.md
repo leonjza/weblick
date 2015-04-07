@@ -77,7 +77,7 @@ A web component exists that allows one to view some information about urls. To r
 $ python web.py
 ```
 
-![webUI](http://i.imgur.com/fuEvtb7.png)
+![webUI](http://i.imgur.com/WyRUQCR.png)
 
 ### Future / TODO
 
